@@ -13,6 +13,7 @@ using BusinessObjects;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using BusinessObjects;
 
 namespace Data
 {
@@ -22,15 +23,23 @@ namespace Data
     public class ForecastTyped
     {
         #region ATTRIBUTES
-        ForecastNLocalBO forecastLocal = new ForecastNLocalBO(); // BO version of ForestNLocal
+        public ForecastNLocalBO forecastLocal; // BO version of ForestNLocal
         //      Lists of 5 days of weather
-        static List<Weather> dataTyped = new List<Weather>(); // data with types (float,DateTime)
+        public static List<Weather> dataTyped; // data with types (float,DateTime)
         #endregion
 
         #region METHODS
-        internal static List<Weather> GetDataTypedList()
+        public static List<Weather> GetDataTypedList()
         {
             return dataTyped;
+        }
+        #endregion
+
+        #region CONSTRUCTOR
+        public ForecastTyped()
+        {
+            forecastLocal = new ForecastNLocalBO();
+            dataTyped = new List<Weather>();
         }
         #endregion
     }
@@ -43,6 +52,9 @@ namespace Data
         ForecastNLocalBO forecastLocal = new ForecastNLocalBO(); // BO version of ForestNLocal
         static List<WeatherToSave> data = new List<WeatherToSave>(); // the one to serialize (only strings and ints)
 
+        /// <summary>
+        /// Updates list data with dataTyped values
+        /// </summary>
         public static void Update()
         {
 
@@ -84,16 +96,15 @@ namespace Data
     }
 
     /// <summary>
-    /// Forecast data
+    /// Manipulates forecast files
     /// </summary>
-    class ForescastsWithLocal
-    {
-        static List<ForecastTyped> forecastsListLocal = new List<ForecastTyped>(); // List of all forecasts, with local added
-    }
-
-    public static class ForecastInfoManipulation { 
+    public static class ForecastInfoManipulation {
+        #region ATTRIBUTES
         static string originalData;
+        static string forecastFilePath = "..\\..\\..\\..\\1010500.json";
+        #endregion
 
+        #region METHODS
         /// <summary>
         /// Gathers all data 
         /// </summary>
@@ -102,12 +113,13 @@ namespace Data
         {
 
             string generalRegularExpression; // wil contain regular expression for fields match
-            int idValue; // aux variable for id's int parse
+            int intValue; // aux variable for id's int parse
+            DateTime auxDate;
 
             try
             {
                 // Regular expression for locals (Names)
-                generalRegularExpression = "\"[a-zA-Z]+\": [\"]?([^\\[][a-zA-z0-9\\.:-]*)[\"]?";
+                generalRegularExpression = "\"([a-zA-Z]+)\":[\"]?([^\\[][a-zA-z0-9\\.:-]*)[\"]?";
                 Regex regexObjId = new Regex(generalRegularExpression);
             }
             catch (ArgumentException ex) { throw ex; }
@@ -117,13 +129,84 @@ namespace Data
             MatchCollection generalMatches = Regex.Matches(originalData, generalRegularExpression); // getting local matches
 
             Console.WriteLine("");
+            ForecastTyped forecastTyped = new ForecastTyped();
+
+            forecastTyped.forecastLocal.forecast.Owner = generalMatches[0].Groups[2].Value;
+            forecastTyped.forecastLocal.forecast.Country = generalMatches[1].Groups[2].Value;
+            int j = 0;
+            float auxFloatVal;
+
             // Cycle to introduce values into locals' list
-            for(int i = 0; i < generalMatches.Count; i++)
+
+            for (int i = 2; i < generalMatches.Count; i++)
             {
-                
+                // precipitaProb
+                float.TryParse(generalMatches[i].Groups[2].Value, out auxFloatVal);
+                ForecastTyped.dataTyped[j].PrecipitaProb = auxFloatVal;
+                i++;
+
+                // tMin
+                float.TryParse(generalMatches[i].Groups[2].Value, out auxFloatVal);
+                ForecastTyped.dataTyped[j].Tmin = auxFloatVal;
+                i++;
+
+                // tMax
+                float.TryParse(generalMatches[i].Groups[2].Value, out auxFloatVal);
+                ForecastTyped.dataTyped[j].Tmax = auxFloatVal;
+                i++;
+
+                // predWindDir
+                ForecastTyped.dataTyped[j].PredWindDir = generalMatches[i].Groups[2].Value;
+                i++;
+
+                // idWeatherType
+                Int32.TryParse(generalMatches[i].Groups[2].Value, out intValue);
+                ForecastTyped.dataTyped[j].IdWeatherType = intValue;
+                i++;
+
+                // classWindSpeed
+                Int32.TryParse(generalMatches[i].Groups[2].Value, out intValue);
+                ForecastTyped.dataTyped[j].ClassWindSpeed = intValue;
+                i++;
+
+                // longitude
+                float.TryParse(generalMatches[i].Groups[2].Value, out auxFloatVal);
+                ForecastTyped.dataTyped[j].Longitude = auxFloatVal;
+                i++;
+
+                // forecastDate
+                DateTime.TryParse(generalMatches[i].Groups[2].Value, out auxDate);
+                ForecastTyped.dataTyped[j].ForecastDate = auxDate;
+                i++;
+
+                if (generalMatches[i].Groups[1].Value == "classPrecInt")
+                {
+                    // classPrecInt
+                    Int32.TryParse(generalMatches[i].Groups[2].Value, out intValue);
+                    ForecastTyped.dataTyped[j].ClassPrecInt = intValue;
+                    i++;
+                }
+
+                // latitude
+                float.TryParse(generalMatches[i].Groups[2].Value, out auxFloatVal);
+                ForecastTyped.dataTyped[j].Latitude = auxFloatVal;
+
             }
             return true;
         }
+
+        /// <summary>
+        /// Loads a data from a forecast file
+        /// </summary>
+        /// <returns></returns>
+        public static bool FileLoader()
+        {
+            originalData = JsonFilesManipulation.FileLoader(forecastFilePath); // Load of forecast's file by generic json file loader
+            if (originalData != null) return true;
+            return false;
+        }
+
+        #endregion
     }
 
 }

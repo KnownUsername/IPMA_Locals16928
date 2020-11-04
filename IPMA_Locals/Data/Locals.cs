@@ -239,13 +239,13 @@ namespace Data
             weatherLocal = Locals.MatchIdToLocal(idLocal); // corresponding local
             posString = ReachIndexToAddLocal(); // position to add local
 
-            stringLocal = "\"local\": \""+weatherLocal+"\","; // text to add (local field + its value)
+            stringLocal = "\"local\":\""+weatherLocal+"\","; // text to add (local field + its value)
 
             modifiedData = originalData.Insert(posString, stringLocal); // Insert of new info to string copy of file
 
             Console.WriteLine(modifiedData);
             // # Save new changes on new file
-            JsonFilesManipulation.SaveStringToJsonFile(modifiedData, newFilePath, "1110600-detalhe.json");
+            JsonFilesManipulation.SaveStringToJsonFile(modifiedData, newFilePath, "1110500-detalhe.json");
             
             return true;
         }

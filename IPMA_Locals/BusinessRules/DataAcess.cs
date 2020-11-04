@@ -67,4 +67,29 @@ namespace BusinessRules
             return WeatherInfoManipulation.AddLocalToWeatherFile();
         }
     }
+    
+    /// <summary>
+    /// Acessment to forecast data
+    /// </summary>
+    public static class DataAcessForecast
+    {
+        /// <summary>
+        /// Makes it accesible to load forecast source file
+        /// </summary>
+        /// <returns></returns>
+        public static bool LoadForecast()
+        {
+            return ForecastInfoManipulation.FileLoader();
+        }
+
+        /// <summary>
+        /// Passes values to class object
+        /// </summary>
+        /// <returns></returns>
+        public static bool ForecastInputInfo()
+        {
+            return ForecastInfoManipulation.GatherInfo();
+        }
+    }
+
 }

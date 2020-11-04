@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{48A6D359-01BB-4B69-B5C2-31539C67042F}</ProjectGuid>
+    <ProjectGuid>{9485134C-E7F3-4CAD-8EC6-062F26938E72}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Program</RootNamespace>
-    <AssemblyName>Program</AssemblyName>
+    <RootNamespace>LocalsIdTrackerClasses</RootNamespace>
+    <AssemblyName>LocalsIdTrackerClasses</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -57,6 +57,10 @@
     <ProjectReference Include="..\Local\BusinessObjects.csproj">
       <Project>{5753543c-3073-45f8-90b2-60291dabde2c}</Project>
       <Name>BusinessObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Program\LocalsIdTracker.csproj">
+      <Project>{48a6d359-01bb-4b69-b5c2-31539c67042f}</Project>
+      <Name>LocalsIdTracker</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

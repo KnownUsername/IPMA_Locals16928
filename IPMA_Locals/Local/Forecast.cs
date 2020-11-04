@@ -12,7 +12,6 @@
             -> [ForecastWithLocal] Edited one (local addition to original Forecast)
  */
 using System;
-using System.Collections.Generic;
 
 namespace BusinessObjects
 {
@@ -40,7 +39,7 @@ namespace BusinessObjects
     /// </summary>
     public class ForecastNLocalBO
     {
-        ForecastBO forecast = new ForecastBO();
+        public ForecastBO forecast = new ForecastBO();
         string local;
 
         public string Local { get { return local; } set { local = value; } }
