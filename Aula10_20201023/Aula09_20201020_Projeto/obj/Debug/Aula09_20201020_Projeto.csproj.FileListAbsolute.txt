@@ -1,0 +1,12 @@
+C:\Users\admin\source\repos\Aula09_20201020_21h30_pub\Aula09_20201020_Projeto\bin\Debug\Aula09_20201020_Projeto.exe.config
+C:\Users\admin\source\repos\Aula09_20201020_21h30_pub\Aula09_20201020_Projeto\bin\Debug\Aula09_20201020_Projeto.exe
+C:\Users\admin\source\repos\Aula09_20201020_21h30_pub\Aula09_20201020_Projeto\bin\Debug\Aula09_20201020_Projeto.pdb
+C:\Users\admin\source\repos\Aula09_20201020_21h30_pub\Aula09_20201020_Projeto\obj\Debug\Aula09_20201020_Projeto.csprojAssemblyReference.cache
+C:\Users\admin\source\repos\Aula09_20201020_21h30_pub\Aula09_20201020_Projeto\obj\Debug\Aula09_20201020_Projeto.exe
+C:\Users\admin\source\repos\Aula09_20201020_21h30_pub\Aula09_20201020_Projeto\obj\Debug\Aula09_20201020_Projeto.pdb
+C:\Users\admin\source\repos\ESI_ISI_202021_source\Aula09_20201020_21h30_pub\Aula09_20201020_Projeto\bin\Debug\Aula09_20201020_Projeto.exe.config
+C:\Users\admin\source\repos\ESI_ISI_202021_source\Aula09_20201020_21h30_pub\Aula09_20201020_Projeto\bin\Debug\Aula09_20201020_Projeto.exe
+C:\Users\admin\source\repos\ESI_ISI_202021_source\Aula09_20201020_21h30_pub\Aula09_20201020_Projeto\bin\Debug\Aula09_20201020_Projeto.pdb
+C:\Users\admin\source\repos\ESI_ISI_202021_source\Aula09_20201020_21h30_pub\Aula09_20201020_Projeto\obj\Debug\Aula09_20201020_Projeto.csprojAssemblyReference.cache
+C:\Users\admin\source\repos\ESI_ISI_202021_source\Aula09_20201020_21h30_pub\Aula09_20201020_Projeto\obj\Debug\Aula09_20201020_Projeto.exe
+C:\Users\admin\source\repos\ESI_ISI_202021_source\Aula09_20201020_21h30_pub\Aula09_20201020_Projeto\obj\Debug\Aula09_20201020_Projeto.pdb

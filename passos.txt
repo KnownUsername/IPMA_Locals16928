@@ -1,0 +1,9 @@
+1. Pegar no ficheiro "distrits-islands.json", salvar distrito e o seu código "globalIdLocal"
+	-> Criar classe 
+		-> Distrito 
+			-> nome
+			-> id
+
+2. Abrir ficheiro com previsão, adicionar "local:" + local do id.
+	-> Procurar id, em globalIdLocal 
+	-> Obter índice da string para juntar local

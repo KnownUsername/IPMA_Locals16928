@@ -1,0 +1,6 @@
+Local: "local":\s"([a-zA-z\s\\0-9]+)" | "\"local\"" + ":\\s\"([a-zA-z\\s\\0-9]+)\""
+Id: "globalIdLocal":\s([0-9]+)
+
+
+
+"globalIdLocal":\s([0-9]+)[^c]+cal":\s\"([\w \\]+)"

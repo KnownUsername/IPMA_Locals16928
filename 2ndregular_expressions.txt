@@ -1,0 +1,20 @@
+owner: "owner":"([a-zA-z]+)"
+country: "country": "([a-zA-z]+)"
+precipitaProb: "precipitaProb": "([0-9\.]+)"
+tMin: "tMin": "([0-9\.]+)"
+tMax: "tMax": "([0-9\.]+)"
+predWindDir: "predWindDir": "([a-zA-z]+)"
+
+
+"([a-zA-Z]+)": ["]?([^\[][a-zA-z0-9\.-]+)["]?,
+
+"([a-zA-Z]+)": [[["]?([^\[][a-zA-z0-9\.-]+]|[\d{1}])["]?,
+"([a-zA-Z]+)": (["]?[[^\[][a-zA-z0-9\.-]+]|[\d{4}]-[\d{2}]-[\d{2}]]["]?),
+"([a-zA-Z]+)": (["]?[ [^\[][\d{1,2}] ]["]?),
+
+INTEIROS
+"([a-zA-Z]+)": ([\d]+),
+OUTROS
+"([a-zA-Z]+)": ["]?([^\[][a-zA-z0-9\.:-]+)["]?
+TUDO
+"([a-zA-Z]+)": ["]?([^\[][a-zA-z0-9\.:-]*)["]?
