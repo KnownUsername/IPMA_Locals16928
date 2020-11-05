@@ -12,8 +12,8 @@
 using BusinessObjects;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text.RegularExpressions;
-using BusinessObjects;
 
 namespace Data
 {
@@ -133,64 +133,65 @@ namespace Data
 
             forecastTyped.forecastLocal.forecast.Owner = generalMatches[0].Groups[2].Value;
             forecastTyped.forecastLocal.forecast.Country = generalMatches[1].Groups[2].Value;
-            int j = 0;
-            float auxFloatVal;
 
+            float auxFloatVal;
+            Weather newWeather = new Weather();
             // Cycle to introduce values into locals' list
 
             for (int i = 2; i < generalMatches.Count; i++)
             {
                 // precipitaProb
-                float.TryParse(generalMatches[i].Groups[2].Value, out auxFloatVal);
-                ForecastTyped.dataTyped[j].PrecipitaProb = auxFloatVal;
+                float.TryParse(generalMatches[i].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out auxFloatVal);
+                newWeather.PrecipitaProb = auxFloatVal;
                 i++;
 
                 // tMin
-                float.TryParse(generalMatches[i].Groups[2].Value, out auxFloatVal);
-                ForecastTyped.dataTyped[j].Tmin = auxFloatVal;
+                float.TryParse(generalMatches[i].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out auxFloatVal);
+                newWeather.Tmin = auxFloatVal;
                 i++;
 
                 // tMax
-                float.TryParse(generalMatches[i].Groups[2].Value, out auxFloatVal);
-                ForecastTyped.dataTyped[j].Tmax = auxFloatVal;
+                float.TryParse(generalMatches[i].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out auxFloatVal);
+                newWeather.Tmax = auxFloatVal;
                 i++;
 
                 // predWindDir
-                ForecastTyped.dataTyped[j].PredWindDir = generalMatches[i].Groups[2].Value;
+                newWeather.PredWindDir = generalMatches[i].Groups[2].Value;
                 i++;
 
                 // idWeatherType
                 Int32.TryParse(generalMatches[i].Groups[2].Value, out intValue);
-                ForecastTyped.dataTyped[j].IdWeatherType = intValue;
+                newWeather.IdWeatherType = intValue;
                 i++;
 
                 // classWindSpeed
                 Int32.TryParse(generalMatches[i].Groups[2].Value, out intValue);
-                ForecastTyped.dataTyped[j].ClassWindSpeed = intValue;
+                newWeather.ClassWindSpeed = intValue;
                 i++;
 
                 // longitude
-                float.TryParse(generalMatches[i].Groups[2].Value, out auxFloatVal);
-                ForecastTyped.dataTyped[j].Longitude = auxFloatVal;
+                float.TryParse(generalMatches[i].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out auxFloatVal);
+                newWeather.Longitude = auxFloatVal;
                 i++;
 
                 // forecastDate
                 DateTime.TryParse(generalMatches[i].Groups[2].Value, out auxDate);
-                ForecastTyped.dataTyped[j].ForecastDate = auxDate;
+                newWeather.ForecastDate = auxDate;
                 i++;
 
                 if (generalMatches[i].Groups[1].Value == "classPrecInt")
                 {
                     // classPrecInt
                     Int32.TryParse(generalMatches[i].Groups[2].Value, out intValue);
-                    ForecastTyped.dataTyped[j].ClassPrecInt = intValue;
+                    newWeather.ClassPrecInt = intValue;
                     i++;
                 }
-
+               
                 // latitude
-                float.TryParse(generalMatches[i].Groups[2].Value, out auxFloatVal);
-                ForecastTyped.dataTyped[j].Latitude = auxFloatVal;
+                float.TryParse(generalMatches[i].Groups[2].Value, NumberStyles.Any, CultureInfo.InvariantCulture, out auxFloatVal);
+                newWeather.Latitude = auxFloatVal;
 
+                ForecastTyped.dataTyped.Add(newWeather);
             }
             return true;
         }
